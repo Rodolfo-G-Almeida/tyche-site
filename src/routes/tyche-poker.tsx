@@ -44,7 +44,7 @@ const tycheTheme = {
 } as CSSProperties;
 
 const GREEN = "#549b90";
-const GOLD = "#5e9890";
+const GOLD = "#FFD700";
 
 const about = [
   { icon: Users, title: "Convidados especiais", text: "Jogadores e personalidades convidados em cada mesa, criando disputas com narrativa própria." },

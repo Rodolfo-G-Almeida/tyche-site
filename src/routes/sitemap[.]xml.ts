@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 
-// TODO: replace with the final custom domain once it's defined.
 const BASE_URL = "https://tyche.poker";
 
 interface SitemapEntry {
