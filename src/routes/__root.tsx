@@ -63,7 +63,7 @@ const orgJsonLd = {
   "@type": "Organization",
   name: "Tyche Poker",
   alternateName: ["Tyche Poker Live", "Tyche Tech"],
-  url: "https://tychepoker.com.br",
+  url: "https://tyche.poker",
   description:
     "Tyche Poker Live: transmissões ao vivo de partidas de poker com convidados especiais. Tyche Tech: sistema de transmissão profissional de poker com leitura de cartas em tempo real.",
   areaServed: "Worldwide",

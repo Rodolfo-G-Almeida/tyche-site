@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tychepoker.com.br/sitemap.xml
+Sitemap: https://tyche.poker/sitemap.xml
