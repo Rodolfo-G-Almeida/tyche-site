@@ -58,6 +58,18 @@ function ErrorComponent({ error, reset }: { error: unknown; reset: () => void })
   );
 }
 
+/**
+ * Contêineres do Google Tag Manager pedidos pelo cliente (19/11/2026).
+ * Um único evento gtm.js é enviado e os três contêineres o compartilham pelo
+ * mesmo dataLayer, para as tags de "Todas as páginas" dispararem uma vez só.
+ */
+const GTM_IDS = ["GTM-WBPXPB7T", "GTM-NJ3W99VN", "GTM-K6LM5KXQ"] as const;
+
+const gtmInitSnippet = `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});`;
+
 const orgJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -97,6 +109,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" },
     ],
     scripts: [
+      { children: gtmInitSnippet },
+      ...GTM_IDS.map((id) => ({ src: `https://www.googletagmanager.com/gtm.js?id=${id}`, async: true })),
       { type: "application/ld+json", children: JSON.stringify(orgJsonLd) },
     ],
   }),
@@ -113,6 +127,16 @@ function RootShell({ children }: { children: ReactNode }) {
         <HeadContent />
       </head>
       <body>
+        {GTM_IDS.map((id) => (
+          <noscript key={id}>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${id}`}
+              height="0"
+              width="0"
+              style={{ display: "none", visibility: "hidden" }}
+            />
+          </noscript>
+        ))}
         {children}
         <Scripts />
       </body>
